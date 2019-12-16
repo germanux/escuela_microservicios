@@ -1,6 +1,5 @@
 package com.viewnext.apiusuarios.entidades;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,13 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Usuario /*implements Serializable*/ {
+public class Tema {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,16 +22,10 @@ public class Usuario /*implements Serializable*/ {
 	
 	@NotNull	// Not null de JPA
 	@Size(min = 1, max = 50)
+	@Column(unique = true)
 	private String nombre;
 
-	@NotNull
-	@Size(min = 3, max = 255)
-	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
-	@Column(unique = true)
-	private String email;
-
-	@Size(min = 2, max = 50)
-	private String password;
+	private String descripcion;
 	
 	// Información específica de la columna en bb.dd.
 	@Column(name="timestamp", nullable = false, 
@@ -42,25 +34,19 @@ public class Usuario /*implements Serializable*/ {
 			columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timestamp;
-	
-	/*private int edad;
-	
-	public int getEdad() {
-		return edad;
-	}
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}*/
-	public Usuario() {
+
+		
+	public Tema() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	public Usuario(Integer id, String nombre, String email, String password) {
+	public Tema(Integer id, @NotNull @Size(min = 1, max = 50) String nombre, String descripcion) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.email = email;
-		this.password = password;
+		this.descripcion = descripcion;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -73,17 +59,11 @@ public class Usuario /*implements Serializable*/ {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getEmail() {
-		return email;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	public Date getTimestamp() {
 		return timestamp;

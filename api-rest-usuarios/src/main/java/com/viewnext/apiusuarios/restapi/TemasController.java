@@ -16,64 +16,66 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.viewnext.apiusuarios.entidades.Tema;
 import com.viewnext.apiusuarios.entidades.Usuario;
+import com.viewnext.apiusuarios.model.AlmacenDAOTemas;
 import com.viewnext.apiusuarios.model.AlmacenDAOUsuarios;
 
 @RestController()
-@RequestMapping("/api/usuarios")
-public class UsuariosController {
+@RequestMapping("/api/temas")
+public class TemasController {
 
 	// Inyección de depencias: Spring se encarga de
 	// Instanciar el DAO (obj, no interfaz, y asignarlo
 	// a nuestro RestController al contruirlo
 	@Autowired
-	private AlmacenDAOUsuarios dao;
+	private AlmacenDAOTemas dao;
 	
 	
 	@PostMapping()
-	public Usuario crearUsuario(@RequestBody Usuario usuario) {	
+	public Tema crearUsuario(@RequestBody Tema tema) {	
 		// Recibe sin ID en el BODY de la petición HTTP y deserializa el JSON a un obj Usuario
-		return dao.save(usuario);	// Devuelve con ID
+		return dao.save(tema);	// Devuelve con ID
 	}
-	
+
+	@PostMapping(value = "/lista")
+	public List<Tema> crearUsuario(@RequestBody List<Tema> temas) {	
+
+		return dao.saveAll(temas);	// Devuelve con ID
+	}
 	@GetMapping
-	public List<Usuario> leerTodos() {
+	public List<Tema> leerTodos() {
 		return dao.findAll();
 	}
 	
 	@RequestMapping(value="/{id}", method = {RequestMethod.GET /*, RequestMethod.POST */} )
-	public Usuario getUsuario(@PathVariable Integer id) {
-		System.out.println(">>>> GET - ID RECIBIDO " + id);
-		//TODO Optional
-		Optional<Usuario> usu = dao.findById(id);
-		return usu.orElse(null);
+	public Tema getTema(@PathVariable Integer id) {
+		System.out.println(">>>> GET Tema - ID RECIBIDO " + id);
+
+		Optional<Tema> tema = dao.findById(id);
+		return  tema.orElse(null);
 	}
 
-	@PutMapping()
-	public Usuario modificarUsuario(@RequestBody Usuario usuario) {	
-		// Recibe sin ID en el BODY de la petición HTTP y deserializa el JSON a un obj Usuario
-		return dao.save(usuario);	// Devuelve con ID
-	}
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT )
-	public Usuario modificarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
+	public Tema modificarTema(@PathVariable Integer id, @RequestBody Tema tema) {
 		System.out.println(">>>> MODIFICAR ID RECIBIDO " + id);
 
-		usuario.setId(id);		
-		return dao.save(usuario);
+		tema.setId(id);		
+		return dao.save(tema);
 	}
 	@DeleteMapping(value="/{id}") 
-	public void eliminarUsuario(@PathVariable Integer id) {
+	public void eliminarTema(@PathVariable Integer id) {
 		System.out.println(">>>> ELIMINAR ID RECIBIDO " + id);
 
 		dao.deleteById(id);
 	}
 
 	@DeleteMapping() 
-	public void eliminarUsuario(@RequestBody Usuario usuario) {
+	public void eliminarTema(@RequestBody Tema t) {
 		System.out.println(">>>> DELETE ");
-		dao.delete(usuario);
+		dao.delete(t);
 		// Es equivalente a :
-		// dao.deleteById(usuario.getId());
+		// dao.deleteById(t.getId());
 	}
 	/** Captura un formulario
 	 * 
@@ -81,16 +83,15 @@ public class UsuariosController {
 	 * @param name
 	 */
 	@PostMapping(value="/formulario") // Subruta /formulario porque la raiz con POST ya está cogida
-	public Usuario crearUsuarioPorParam(
+	public Tema crearTemaPorParam(
 			//@RequestParam Integer id, 
 			@RequestParam (name="nombre") String elNombreDelUsu, 
-			@RequestParam String email,
-			@RequestParam String password) 
+			@RequestParam String descripon) 
 	{
-		Usuario usu = new Usuario(null, elNombreDelUsu, email, password);
+		Tema t = new Tema(null, elNombreDelUsu, descripon);
 		System.out.println(">>>> crearUsuarioPorParam ");
 		
-		return dao.save(usu);
+		return dao.save(t);
 	}
 
 }

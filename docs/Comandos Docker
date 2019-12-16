@@ -1,0 +1,24 @@
+sudo apt install docker.io
+Esperar 28
+reiniciar
+sudo apt update
+sudo apt upgrade
+Listar contenedores activos:
+sudo docker ps -a
+ifconfig	->   172.16.2.*
+
+sudo docker run --name mi_mysql -d -p 3307:3306  -e MYSQL_ROOT_PASSWORD=1234   mysql:8.0.18
+
+Parar un contenedor:
+  sudo docker stop  <<nombre_container>>
+Parar todos los contenedores:
+	sudo docker stop $(sudo docker ps -a -q)
+Arrancar un contenedor:
+  sudo docker start  <<nombre_container>>
+Mostrar el log:
+  sudo docker logs  <<nombre_container>>
+Parar y eliminar contenedor:
+	sudo docker rm -f <<nombre_container>>
+Parar y eliminar todos:
+	sudo docker rm $(sudo docker ps -a -q)
+

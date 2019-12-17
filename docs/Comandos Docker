@@ -7,7 +7,7 @@ Listar contenedores activos:
 sudo docker ps -a
 ifconfig	->   172.16.2.*
 
-sudo docker run --name mi_mysql -d -p 3307:3306  -e MYSQL_ROOT_PASSWORD=1234   mysql:8.0.18
+sudo docker run --name mi_mysql -d -p 3306:3306  -e MYSQL_ROOT_PASSWORD=1234   mysql:8.0.18
 
 Parar un contenedor:
   sudo docker stop  <<nombre_container>>
@@ -21,4 +21,25 @@ Parar y eliminar contenedor:
 	sudo docker rm -f <<nombre_container>>
 Parar y eliminar todos:
 	sudo docker rm $(sudo docker ps -a -q)
+
+Zuul (Gateway o proxie) o Ribbon (balanceador de carga) junto Eureka
+
+Listar volumenes:
+	sudo docker volume ls
+Eliminar todos volumenes
+	sudo docker volume prune
+Crear volumen en Host(Kubuntu), que es un directorio donde
+se almacenarán los ficheros de MySQL:
+	sudo docker volume create  mysql-db-data
+Verificar ruta de almacenamiento:
+	sudo docker volume inspect mysql-db-data
+Ruta probable de volumenes:
+	/var/lib/docker/volumes
+
+Levantar contenedor MySQL con volumen montado:
+	sudo docker run --name mysql-usu  -d -p 3306:3306  -e MYSQL_ROOT_PASSWORD=1234  --mount src=mysql-db-data,dst=/var/lib/mysql   mysql:8.0.18
+	
+En general:
+	sudo docker run --name <<NOMBRE_CONTENEDOR>>  -d -p <<PUERTO_HOST>>:<<PUERTO_CONTAINER>>  -e MYSQL_ROOT_PASSWORD=<<PASSWORD_MYSQL>>  --mount src=<<NOMBRE_VOLUMEN>>,dst=<<DIRECTORIO_INTERNO_CONT>>   <<REPOSITORIO>>:<<VERSION/PROYECTO>>
+	
 

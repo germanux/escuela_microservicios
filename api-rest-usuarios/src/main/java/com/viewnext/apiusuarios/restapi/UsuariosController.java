@@ -108,18 +108,11 @@ public class UsuariosController {
 	{
 		System.out.println(">>>> getTemasDeUsuario - ID RECIBIDO " + idUsuario);
 		
-		List<TemaDeUsuario> temasUsu = daoTemasUsu.findTemasDeUnUsuario(idUsuario);
+		List<TemaDeUsuario> temasUsu = //  daoTemasUsu.findTemasDeUnUsuario(idUsuario);
+			daoTemasUsu.findTemasPorUsuarioHQL(idUsuario);
 		return temasUsu;
 	}
 
-	@GetMapping(value="/{idUsuario}/temas")
-	public List<Tema> getTemasPorUsuario(@PathVariable Integer idUsuario) 
-	{
-		System.out.println(">>>> getTemasPorUsuario - ID RECIBIDO " + idUsuario);
-		
-		List<Tema> temasUsu = daoTemas.findTemasPorUsuario(idUsuario);
-		return temasUsu;
-	}
 	
 	@PostMapping(value = "/{id}/temas/{idt}")
 	public TemaDeUsuario addTemaDeUsuario(@PathVariable Integer id,

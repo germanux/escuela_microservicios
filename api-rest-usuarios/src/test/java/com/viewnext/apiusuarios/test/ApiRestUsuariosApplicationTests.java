@@ -1,4 +1,4 @@
-package com.viewnext.apiusuarios;
+package com.viewnext.apiusuarios.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

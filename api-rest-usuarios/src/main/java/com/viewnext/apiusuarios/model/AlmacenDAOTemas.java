@@ -15,5 +15,6 @@ public interface AlmacenDAOTemas
 			"  WHERE tema_de_usuario.id_usuario = ?1", 
 			nativeQuery = true)
 	public List<Tema> findTemasPorUsuario(Integer idUsuario);
+	
 
 }

@@ -8,22 +8,28 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="tema_de_usuario")
+@NamedQuery(name = "TemaDeUsuario.findTemasPorUsuarioHQL", 
+		query = "SELECT t FROM TemaDeUsuario t WHERE t.idsPk.idUsuario = :idUsuario")
 public class TemaDeUsuario implements Serializable {
 	
-	/**
+	/**	YAML
 	 * 
 	 */
 	private static final long serialVersionUID = -8594608883991826180L;
 
+	// Id compuesto
 	@EmbeddedId
 	private TemaDeUsuarioPK idsPk;
-
+	
+	private int ordenPreferencia;
+ 
 	@Column(name="timestamp", nullable = false, 
 			updatable = false, 
 			insertable = false, 
@@ -69,6 +75,14 @@ public class TemaDeUsuario implements Serializable {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	public int getOrdenPreferencia() {
+		return ordenPreferencia;
+	}
+
+	public void setOrdenPreferencia(int ordenPreferencia) {
+		this.ordenPreferencia = ordenPreferencia;
 	}	
 	
 	

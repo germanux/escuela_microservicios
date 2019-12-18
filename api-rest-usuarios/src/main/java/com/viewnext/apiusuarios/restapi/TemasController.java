@@ -44,8 +44,16 @@ public class TemasController {
 		return dao.saveAll(temas);	// Devuelve con ID
 	}
 	@GetMapping
-	public List<Tema> leerTodos() {
-		return dao.findAll();
+	public List<Tema> leerTodos(			
+			@RequestParam(name = "usuario", required = false) 
+				Integer idUsuario) {
+		List<Tema> temas;
+		if (idUsuario == null) {
+			temas = dao.findAll();
+		} else {
+			temas = dao.findTemasPorUsuario(idUsuario);
+		}
+		return temas;
 	}
 	
 	@RequestMapping(value="/{id}", method = {RequestMethod.GET /*, RequestMethod.POST */} )

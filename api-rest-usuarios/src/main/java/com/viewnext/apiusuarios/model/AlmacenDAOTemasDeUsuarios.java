@@ -9,6 +9,7 @@ import com.viewnext.apiusuarios.entidades.Tema;
 import com.viewnext.apiusuarios.entidades.TemaDeUsuario;
 import com.viewnext.apiusuarios.entidades.TemaDeUsuarioPK;
 
+
 public interface AlmacenDAOTemasDeUsuarios 
 	extends JpaRepository<TemaDeUsuario, TemaDeUsuarioPK> {
 	
@@ -17,6 +18,8 @@ public interface AlmacenDAOTemasDeUsuarios
 			" WHERE tu.id_usuario = ?1", 
 			nativeQuery = true)
 	public List<TemaDeUsuario> findTemasDeUnUsuario(Integer idUsuario);
+
+	public List<TemaDeUsuario> findTemasPorUsuarioHQL(Integer idUsuario);
 	
 // Sólo versión 11 de Java
 	/*

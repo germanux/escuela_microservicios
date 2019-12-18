@@ -20,6 +20,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Tema implements Serializable{
 
@@ -43,6 +46,8 @@ public class Tema implements Serializable{
 									// EAGER: rápida, al hacer la consulta
 	// @JoinTable(name = "usuario", joinColumns = {@JoinColumn(name= "id_tema_preferido")} )
 	@JoinColumn(name = "id_tema_preferido")
+	// @JsonIgnore 
+	@JsonBackReference
 	private List<Usuario> usuariosPref;
 
 	private String descripcion;
@@ -97,6 +102,4 @@ public class Tema implements Serializable{
 	public void setUsuariosPref(List<Usuario> usuariosPref) {
 		this.usuariosPref = usuariosPref;
 	}
-	
-	
 }

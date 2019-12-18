@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
@@ -34,6 +36,15 @@ public class Usuario /*implements Serializable*/ {
 
 	@Size(min = 2, max = 50)
 	private String password;
+	
+	@Column(name = "id_tema_preferido",
+			nullable = true, insertable = true, updatable = true)
+	private Integer idTemaPreferido;
+
+	@ManyToOne(optional = true)
+	@JoinColumn(name="id_tema_preferido",  referencedColumnName = "id", 
+			nullable = true, insertable = false, updatable = false)
+	private Tema temaPreferido;
 	
 	// Información específica de la columna en bb.dd.
 	@Column(name="timestamp", nullable = false, 
@@ -90,6 +101,18 @@ public class Usuario /*implements Serializable*/ {
 	}
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+	public Integer getIdTemaPreferido() {
+		return idTemaPreferido;
+	}
+	public void setIdTemaPreferido(Integer idTemaPreferido) {
+		this.idTemaPreferido = idTemaPreferido;
+	}
+	public Tema getTemaPreferido() {
+		return temaPreferido;
+	}
+	public void setTemaPreferido(Tema tema) {
+		this.temaPreferido = tema;
 	}
 	
 	

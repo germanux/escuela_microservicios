@@ -1,12 +1,19 @@
 package com.viewnext.apiusuarios.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -14,7 +21,12 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Tema {
+public class Tema implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8637532331745277608L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +36,14 @@ public class Tema {
 	@Size(min = 1, max = 50)
 	@Column(unique = true)
 	private String nombre;
+	
+	@OneToMany(
+			fetch = FetchType.EAGER) // Forma de recuperar:
+									// LAZY: perezosa (a petición)
+									// EAGER: rápida, al hacer la consulta
+	// @JoinTable(name = "usuario", joinColumns = {@JoinColumn(name= "id_tema_preferido")} )
+	@JoinColumn(name = "id_tema_preferido")
+	private List<Usuario> usuariosPref;
 
 	private String descripcion;
 	
@@ -70,6 +90,12 @@ public class Tema {
 	}
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+	public List<Usuario> getUsuariosPref() {
+		return usuariosPref;
+	}
+	public void setUsuariosPref(List<Usuario> usuariosPref) {
+		this.usuariosPref = usuariosPref;
 	}
 	
 	

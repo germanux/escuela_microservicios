@@ -79,7 +79,54 @@
 			"response": []
 		},
 		{
-			"name": "Get usuario",
+			"name": "Get tema Jose",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.16.2.4:8081/api/temas/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"16",
+						"2",
+						"4"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"temas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tema Javier",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.16.2.1:8081/api/tema",
+					"protocol": "http",
+					"host": [
+						"172",
+						"16",
+						"2",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"tema"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tema Copy",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -158,28 +205,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar usuario 1 Copy",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8081/api/usuarios/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"usuarios",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar usuarios",
+			"name": "Listar temas",
 			"request": {
 				"method": "GET",
 				"header": [],

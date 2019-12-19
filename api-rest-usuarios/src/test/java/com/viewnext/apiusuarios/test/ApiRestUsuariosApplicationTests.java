@@ -37,7 +37,7 @@ class ApiRestUsuariosApplicationTests {
 	@Test
 	void testTemaPreferido() throws InterruptedException {
 		// Thread.sleep(1000);
-		Tema tema = daoTemas.findById(3).orElse(null);
+		Tema tema = daoTemas.findById(1).orElse(null);
 		// assertEquals(2, tema.getId());
 		assertNotEquals(0, tema.getNombre().length());
 		

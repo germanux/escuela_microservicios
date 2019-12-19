@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.viewnext</groupId>
 	<artifactId>api-rest-usuarios</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>api-rest-usuarios</name>
 	<description>Api Rest Usuarios</description>
 
@@ -49,6 +49,10 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 	</dependencies>
 

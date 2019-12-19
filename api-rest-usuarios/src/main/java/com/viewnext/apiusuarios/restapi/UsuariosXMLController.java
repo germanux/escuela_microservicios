@@ -26,8 +26,8 @@ import com.viewnext.apiusuarios.model.AlmacenDAOTemasDeUsuarios;
 import com.viewnext.apiusuarios.model.AlmacenDAOUsuarios;
 
 @RestController()
-@RequestMapping("/api/usuarios")
-public class UsuariosController {
+@RequestMapping("/api/xml/usuarios")
+public class UsuariosXMLController {
 
 	// Inyección de depencias: Spring se encarga de
 	// Instanciar el DAO (obj, no interfaz, y asignarlo
@@ -38,18 +38,22 @@ public class UsuariosController {
 	@Autowired
 	private AlmacenDAOTemasDeUsuarios daoTemasUsu;
 	
-	@PostMapping()
+	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, 
+			produces = MediaType.APPLICATION_XML_VALUE)
 	public Usuario crearUsuario(@RequestBody Usuario usuario) {	
 		// Recibe sin ID en el BODY de la petición HTTP y deserializa el JSON a un obj Usuario
 		return dao.save(usuario);	// Devuelve con ID
 	}
 	
-	@GetMapping
+	@GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
 	public List<Usuario> leerTodos() {
 		return dao.findAll();
 	}
 	
-	@RequestMapping(value="/{id}", method = {RequestMethod.GET /*, RequestMethod.POST */} )
+	@RequestMapping(value="/{id}", 
+			method = {RequestMethod.GET /*, RequestMethod.POST */},
+			produces = MediaType.APPLICATION_XML_VALUE
+	)
 	public Usuario getUsuario(@PathVariable Integer id) {
 		System.out.println(">>>> GET - ID RECIBIDO " + id);
 		//TODO Optional
@@ -57,12 +61,15 @@ public class UsuariosController {
 		return usu.orElse(null);
 	}
 
-	@PutMapping()
+	@PutMapping(consumes = MediaType.APPLICATION_XML_VALUE, 
+			produces = MediaType.APPLICATION_XML_VALUE)
 	public Usuario modificarUsuario(@RequestBody Usuario usuario) {	
 		// Recibe sin ID en el BODY de la petición HTTP y deserializa el JSON a un obj Usuario
 		return dao.save(usuario);	// Devuelve con ID
 	}
-	@RequestMapping(value="/{id}", method = RequestMethod.PUT )
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT,
+			consumes = MediaType.APPLICATION_XML_VALUE, 
+			produces = MediaType.APPLICATION_XML_VALUE)
 	public Usuario modificarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
 		System.out.println(">>>> MODIFICAR ID RECIBIDO " + id);
 
@@ -76,7 +83,7 @@ public class UsuariosController {
 		dao.deleteById(id);
 	}
 
-	@DeleteMapping() 
+	@DeleteMapping(consumes = MediaType.APPLICATION_XML_VALUE) 
 	public void eliminarUsuario(@RequestBody Usuario usuario) {
 		System.out.println(">>>> DELETE ");
 		dao.delete(usuario);
@@ -88,7 +95,8 @@ public class UsuariosController {
 	 * @param id
 	 * @param name
 	 */
-	@PostMapping(value="/formulario") // Subruta /formulario porque la raiz con POST ya está cogida
+	@PostMapping(value="/formulario",
+			produces = MediaType.APPLICATION_XML_VALUE) // Subruta /formulario porque la raiz con POST ya está cogida
 	public Usuario crearUsuarioPorParam(
 			//@RequestParam Integer id, 
 			@RequestParam (name="nombre") String elNombreDelUsu, 
@@ -101,7 +109,8 @@ public class UsuariosController {
 		return dao.save(usu);
 	}
 
-	@GetMapping(value="/{idUsuario}/temas_usu")
+	@GetMapping(value="/{idUsuario}/temas_usu", 
+			produces = MediaType.APPLICATION_XML_VALUE)
 	public List<TemaDeUsuario> getTemasDeUsuario(@PathVariable Integer idUsuario) 
 	{
 		System.out.println(">>>> getTemasDeUsuario - ID RECIBIDO " + idUsuario);
@@ -112,7 +121,8 @@ public class UsuariosController {
 	}
 
 	
-	@PostMapping(value = "/{id}/temas/{idt}")
+	@PostMapping(value = "/{id}/temas/{idt}",
+			produces = MediaType.APPLICATION_XML_VALUE)
 	public TemaDeUsuario addTemaDeUsuario(@PathVariable Integer id,
 			@PathVariable(name = "idt") Integer idTema) {
 		

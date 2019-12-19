@@ -43,7 +43,8 @@ En general:
 	sudo docker run --name <<NOMBRE_CONTENEDOR>>  -d -p <<PUERTO_HOST>>:<<PUERTO_CONTAINER>>  -e MYSQL_ROOT_PASSWORD=<<PASSWORD_MYSQL>>  --mount src=<<NOMBRE_VOLUMEN>>,dst=<<DIRECTORIO_INTERNO_CONT>>   <<REPOSITORIO>>:<<VERSION/PROYECTO>>
 	
 Construir un contenedor desde fichero Dockerfile:
-	docker build -t  api-rest-usuarios:0.0.1-SNAPSHOT  .
-	docker build -t  <<Nombre_repo/proyecto>>:<<proyecto/version>>  <<dir dockerfile>>
-	
+	sudo docker build -t  api-rest-usuarios:0.0.1-SNAPSHOT  .
+	sudo docker build -t  <<Nombre_repo/proyecto>>:<<proyecto/version>>  <<dir dockerfile>>
+Lanzamos nuestro docker
+	sudo docker run -it -p 8081:8081 api-rest-usuarios:0.0.1-SNAPSHOT
 	

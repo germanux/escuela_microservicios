@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="elBoton" value="Pulsar"/>
+    <div id="elDiv"></div>
+    <script>
+        let obj = {
+            prop: "Valor propiedad 2",
+            metodo: () => {
+                alert(this.prop);
+                return true;
+            }            
+        }
+        obj.inicializarOnClick = () => {
+                document.getElementById("elBoton")
+                    .addEventListener("click", this.metodo);
+        }
+        document.getElementById("elBoton").addEventListener("click", function() {
+            obj.metodo();
+        }) ;
+        document.getElementById("elBoton").onclick = function() {
+            obj.metodo();
+        }
+        obj.inicializarOnClick();
+    </script>
+</body>
+</html>

@@ -1,7 +1,8 @@
 <h3>Lista de usuarios:</h3>
 <ul>
     <!-- Tipos de directivas:
-        * directiva estructural (*ngFor, *ngIf...)-->
+        * directiva estructural (*ngFor, *ngIf...)
+        For EACH. -->
     <li *ngFor="let usu of listaUsu">
         <label>Datos:</label>
         {{ usu.id + ", " + usu.nombre + " - " + usu.email}}

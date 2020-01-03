@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ import com.viewnext.apiusuarios.entidades.Usuario;
  */
 @RestController
 @RequestMapping("/api/main/usuarios")
+@CrossOrigin()
 public class UsuariosMainController {
 
 	final static String url = "172.16.2.17";

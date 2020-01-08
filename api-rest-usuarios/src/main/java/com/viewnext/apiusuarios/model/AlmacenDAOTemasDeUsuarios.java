@@ -2,7 +2,10 @@ package com.viewnext.apiusuarios.model;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.viewnext.apiusuarios.entidades.Tema;
@@ -20,6 +23,12 @@ public interface AlmacenDAOTemasDeUsuarios
 	public List<TemaDeUsuario> findTemasDeUnUsuario(Integer idUsuario);
 
 	public List<TemaDeUsuario> findTemasPorUsuarioHQL(Integer idUsuario);
+	
+	@Transactional
+	@Modifying
+	@Query(value = "DELETE FROM tema_de_usuario WHERE id_usuario = ?1",
+			nativeQuery=true)
+	public void deleteByUsuario(Integer id);
 	
 // Sólo versión 11 de Java
 	/*

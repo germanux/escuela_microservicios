@@ -28,7 +28,7 @@ import com.viewnext.apiusuarios.model.AlmacenDAOUsuarios;
 
 @RestController()
 @RequestMapping("/api/json/usuarios")
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 public class UsuariosJsonController {
 
 	// Inyección de depencias: Spring se encarga de
@@ -74,7 +74,8 @@ public class UsuariosJsonController {
 	@DeleteMapping(value="/{id}") 
 	public void eliminarUsuario(@PathVariable Integer id) {
 		System.out.println(">>>> ELIMINAR ID RECIBIDO " + id);
-
+		
+		daoTemasUsu.deleteByUsuario(id);
 		dao.deleteById(id);
 	}
 

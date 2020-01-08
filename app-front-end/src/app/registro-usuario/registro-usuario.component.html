@@ -5,18 +5,16 @@
      3 - El método tiene que avisar al Servicio Cliente REST mediante POST 
      4 - Recoger los datos del usuario y mostrarlos (en especial el ID recibido) -->
 
-     
 <input type="text" [(ngModel)]="usuario.nombre" value="Nombre Por Defecto"/>
 <input type="email" [(ngModel)]="usuario.email" value="email@email.com"/>
 <input type="password" [(ngModel)]="password" value="1234"/>
-
-
+<br>{{ "Enviar " + usuario.nombre + " - " + usuario.password }}
 <input type="button" value="enviarDatos" (click) = "enviarDatos()"/>
 
+<div *ngIf="!estaRegistrado">Aún no se ha registrado</div>
+<div *ngIf="estaRegistrado">Ya se ha registrado: ID: {{usuario.id}}</div>
 
 <!-- 
-
-
 Simple-Data-Binding
 {{ variable + "   -   "   +  usuario.nombre }}
 

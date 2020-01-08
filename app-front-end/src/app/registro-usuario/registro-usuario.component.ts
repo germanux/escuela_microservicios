@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../entidades/Usuario';
+import { UsuariosRestService } from '../usuarios-rest.service';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -9,19 +10,29 @@ import { Usuario } from '../entidades/Usuario';
 export class RegistroUsuarioComponent implements OnInit {  
   variable = "EMPIEZA POR...";
   usuario: Usuario; //  = new Usuario();
-  //
-  constructor() {
-    //.usuario =  new Usuario();
+  password: string = "123";
+  estaRegistrado: boolean = false;
+
+  // Otra vez IoD
+  constructor(private usuSrv: UsuariosRestService) {
+    this.usuario =  new Usuario();
    }
   ngOnInit() {
-    this.usuario = {
+    /*this.usuario = {
+		id: null,
       nombre: "Nnnnn",
       password: "1234",
-      email: "aaaaa@dfdfdf.com"
-    }
+      email: "aaaaa@dfdfdf.com",
+    }*/
   }
   enviarDatos() {
     this.usuario.password = this.password;
+
+    this.usuSrv.registro(this.usuario).subscribe((usuRecibido) => { 
+      this.usuario = usuRecibido;      
+      this.estaRegistrado = ( typeof this.usuario.id !== 'undefined');
+     });
+
     console.log(this.usuario.nombre);
     console.log(this.usuario.email);
   }

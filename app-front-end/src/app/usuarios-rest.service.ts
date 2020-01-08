@@ -20,6 +20,15 @@ export class UsuariosRestService {
     let observableHttp = this.clienteHttp.get<Usuario[]>(this.url);
     return observableHttp;
   }
+  registro(usuario: Usuario): Observable<Usuario> {
+   
+    return this.clienteHttp.post<Usuario>(this.url, usuario);
+  }
+  //    `${uri}/${id}`    uri + "/" + id
+  eliminar(id: number): Observable<any> {
+   
+    return this.clienteHttp.delete<any>(`${this.url}/${id}`);
+  }
   /* 
   getTodos(): Observable<Usuario[]> {
     this.listaUsuario = 

@@ -5,5 +5,11 @@ export class Usuario {
     public password: string;
     public idTemaPreferido: number;
 
-
+    public constructor(usu?: Usuario) {
+        if (arguments.length == 1) {
+            this.id = usu.id;
+            this.nombre = usu.nombre;
+            
+        } 
+    }
 }

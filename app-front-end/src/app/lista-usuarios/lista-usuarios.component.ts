@@ -37,4 +37,11 @@ export class ListaUsuariosComponent implements OnInit {
 
     // Hasta que no nos suscribimos, no hace petición alguna  
   }
+  
+  eliminar(id: number) {
+    this.srvUsu.eliminar(id).subscribe(() => {
+      alert(`Usuario con id ${id} eliminado`);
+      this.ngOnInit();
+    });
+  }
 }

@@ -57,7 +57,6 @@ public class TemasController {
 		}
 		return temas;
 	}
-	
 	@RequestMapping(value="/{id}", method = {RequestMethod.GET /*, RequestMethod.POST */} )
 	public Tema getTema(@PathVariable Integer id) {
 		System.out.println(">>>> GET Tema - ID RECIBIDO " + id);

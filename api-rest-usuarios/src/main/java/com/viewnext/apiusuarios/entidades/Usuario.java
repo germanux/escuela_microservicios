@@ -39,7 +39,7 @@ public class Usuario /*implements Serializable*/ {
 	@Column(unique = true)
 	private String email;
 
-	@Size(min = 2, max = 50)
+	@Size(min = 2, max = 255)
 	private String password;
 	
 	@Column(name = "id_tema_preferido",

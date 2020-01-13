@@ -1,5 +1,5 @@
 server:
-  port: 8084
+  port: 8081
   
 spring:
   datasource:
@@ -14,3 +14,9 @@ spring:
 
 # Cuando hay cambios, eliminar la tabla y datos, y la vuelve a crear
 # spring.jpa.hibernate.ddl-auto=create
+
+# Usuario y password básicos:
+#  security:
+#    user:
+#      name: admin
+#      password: 123

@@ -1,0 +1,44 @@
+Retrospectiva del curso/del proyecto:
+Cosas que bien:
+- Un proyecto a lo largo del curso.
+- Practicas equipo.
+- Freir a preguntas profe
+- Hacer terromismo. 
+- Plano muy práctico.
+- Cubrir menos de Angular, practicar y entender más la arquitectura y el funcionamiento interno y filosofía.
+- Pegarnos de hostias con Git.
+
+Cosas a mejorar:
+- Temario muy ambicioso.
+- Preparar más las prácticas:
+- No incorporar la seguridad desde el pricipio.
+		Solución: Spring Security
+- No diseñar bien la arquitectura la aplicación.
+		Solución: 
+			-	SPA 
+			- y por otro un modelo común a los microservicios: Que el modelo fuera un proyecto independiente usado por los microservicios.
+			- Estrucutura propuesta:
+				GroupId: com.viewnext	(tb paquete raiz)
+				Artefactos (proyecto independiente):
+					- Un proyecto único para gobernarlos a todos
+					- modelo-periodico
+						* spring-boot-starter-data-jpa
+						* mysql-connector
+					- api-usuarios-temas
+						* spring-boot-starter-data-rest  
+						* spring-security-core
+						* modelo-noticias
+					- api-noticias
+						* spring-boot-starter-data-rest  
+						* spring-security-core
+						* modelo-noticias
+				Para evitar explosiones: Un sistema versiones común
+				
+- No planificar bien las tareas.
+		Darle la importancia que tiene: Se ha duplicado trabajo, no se han gestionado las tareas dependientes unas de otras.
+- No planificar las ramas de desarrollo.
+		No era necesario dividir en tantas ramas. Ni separar los proyectos. 
+- No tener una fuente de datos adecuada.
+		Solución: Spring Batch.
+- No especificar nomenclatura correcta.
+- No emplear bien Test Driven Dev y la integración contínua con Jenkins:

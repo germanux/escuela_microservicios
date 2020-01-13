@@ -16,5 +16,7 @@ public interface AlmacenDAOTemas
 			nativeQuery = true)
 	public List<Tema> findTemasPorUsuario(Integer idUsuario);
 	
-
+	// Spring reconoce los métodos findBy Y crea la consulta
+	// SELECT * FROM Tema WHERE Nombre = ?1
+	public Tema findByNombre(String nombre);
 }

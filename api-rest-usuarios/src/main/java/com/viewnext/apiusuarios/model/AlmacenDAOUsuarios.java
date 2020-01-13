@@ -7,4 +7,6 @@ import com.viewnext.apiusuarios.entidades.Usuario;
 public interface AlmacenDAOUsuarios 
 	extends JpaRepository<Usuario, Integer> {
 
+	Usuario findByNombre(String nombre);
+	Usuario findByEmail(String email);
 }

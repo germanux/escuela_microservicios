@@ -10,7 +10,9 @@ import { HttpClient, HttpHeaders }  from '@angular/common/http';
 export class UsuariosRestService {
 
   url = "http://localhost:8081/api/json/usuarios";
+  urlBase = "http://localhost:8081";
   listaUsuario: Usuario[];
+
   
   constructor(
     public almSrv : AlmacenLocalService, 
@@ -39,4 +41,13 @@ export class UsuariosRestService {
     // Creamos un observable a partir de un objeto
     return of(this.listaUsuario);
   }*/
+
+
+  autenticar(usuario: Usuario, callback) {
+    const cabeceras = new HttpHeaders(
+      usuario ? {
+          authorization: 'Basic ' + btoa(usuario.nombre + ":" + usuario.password)
+      } : {});
+      this.clienteHttp.get(url)
+  }
 }
